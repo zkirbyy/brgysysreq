@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DASHBOARD</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@100;300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="dashboard.css">
+  <link rel="stylesheet" href="dash.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="dashboard.js" defer></script>
+</head>
+<body>
+
+    <div class="container">
+        <div class="sidebar">
+          <div class="logo">
+            <img src="logo2.png" alt="Logo" class="logo">
+          </div>
+          <nav>
+            <ul>
+                <li>
+                    <button class="menu-item active" onclick="location.href='dashboard.html'">
+                        <img src="qr.png" alt="Download Logo" class="menu-logo">
+                        Dashboard
+                    </button>
+                </li>
+                <li>
+                    <button class="menu-item" onclick="location.href='requests.html'">
+                        <img src="docu.png" alt="Requests Logo" class="menu-logo">
+                        Requests
+                    </button>
+                </li>
+                <li>
+                  <button class="menu-item" onclick="location.href='status.html'">
+                      <img src="status.png" alt="Status Logo" class="menu-logo">
+                      Status
+                  </button>
+              </li>
+                <li>
+                    <button class="menu-item" onclick="location.href='user.html'">
+                        <img src="people.png" alt="User Management Logo" class="menu-logo">
+                        User Management
+                    </button>
+                </li>
+                <li>
+                  <button class="menu-item" onclick="location.href='login.html'">
+                      <img src="logout.png" alt="Log Out Logo" class="menu-logo">
+                      Log Out
+                  </button>
+              </li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="main-content">
+      <div class="dashboard-header">
+          <h2>DASHBOARD</h2>
+          <button class="notif-button" onclick="location.href='notif.html'">
+              <img src="notif.png" alt="Notifications Logo" class="notif-logo">
+          </button>
+      </div>
+      <div class="request-list">
+        <div class="request">
+            <span class="status" data-status="pending"></span>
+        </div>
+        <div class="request">
+            <span class="status" data-status="approved"></span>
+        </div>
+    </div>
+    
+    <div class="dashboard-stats">
+        <div class="stat total-requests-box">
+            <div class="label">Total Requests</div>
+            <div id="myPieChartContainer">
+              <canvas id="myPieChart" width="400" height="400"></canvas>
+              <div class="chart-legend" id="chartLegend"></div>
+              <div class="number" id="totalRequests"></div>
+            </div>
+        </div>
+        <div class="requests-container">
+          <div class="stat pending-requests-box">
+              <img src="time.png" alt="Pending Requests">
+              <div class="number" id="pendingRequests">0</div>
+              <div class="label">Pending Requests</div>
+          </div>
+      
+          <div class="stat approved-requests-box">
+              <img src="like.png" alt="Approved Requests">
+              <div class="number" id="approvedRequests">0</div>
+              <div class="label">Approved Requests</div>     
+          </div>
+      </div>
+      
+        <canvas id="myPieChart"></canvas>
+    </div>
+</body>
+</html>

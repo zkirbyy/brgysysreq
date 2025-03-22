@@ -1,0 +1,122 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url('bg.png');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: left;
+}
+
+.login-box {
+    background: white;
+    height: 500px;
+    padding: 90px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 470px;
+    margin: 10px auto;
+}
+
+.logo {
+    width: 200px;
+    height: 150px;
+    background-image: url('logo.png'); 
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 0 auto 10px auto;
+    transform: translateY(-60px);
+}
+
+h2 {
+    font-size: 30px;
+    font-weight: 800;
+    margin-top: -40px;
+    color: #333;
+    transform: translateY(-20px);
+    font-family:  Poppins;
+}
+
+p {
+    color: #777;
+    font-size: 15px;
+    margin-bottom: 10px;
+    transform: translateY(-25px);
+    font-family: Poppins;
+}
+
+input {
+    width: 125%;
+    padding: 10px;
+    margin: 15px auto;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-size: 14px;
+    font-family: Poppins;
+    transform: translateX(-9%);
+    margin-top: -5px;
+}
+
+.password-container {
+    position: relative;
+    width: 100%;
+}
+
+.password-container input {
+    width: 125%;
+    padding-right: 30px; 
+}
+
+.password-container .toggle-password {
+    position: absolute;
+    top: 50%;
+    right: -25px;
+    transform: translateY(-97%);
+    cursor: pointer;
+    font-size: 17px;
+    color: #888;
+}
+
+.forgot-password {
+    display: inline-block;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #010066;
+    text-decoration: none;
+    margin-bottom: 15px;
+    width: 113%;
+    font-family: Poppins;
+}
+
+button {
+    width: 125%;
+    background: #010066;
+    color: white;
+    border: none;
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: Poppins;
+    transform: translateX(-9%); 
+}
+
+button:hover {
+    background: #0704c0;
+}

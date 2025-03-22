@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USER MANAGEMENT</title>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@100;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="user.css">
+</head>
+<body>
+
+<div class="container">
+    <div class="sidebar">
+        <div class="logo">
+            <img src="logo2.png" alt="Logo" class="logo">
+        </div>
+        <nav>
+            <ul>
+                <li><button class="menu-item" onclick="location.href='dashboard.html'"><img src="qr.png" alt="Dashboard" class="menu-logo">Dashboard</button></li>
+                <li><button class="menu-item" onclick="location.href='requests.html'"><img src="docu.png" alt="Requests" class="menu-logo">Requests</button></li>
+                <li><button class="menu-item" onclick="location.href='status.html'"><img src="status.png" alt="Status" class="menu-logo">Status</button></li>
+                <li><button class="menu-item active" onclick="location.href='user.html'"><img src="people.png" alt="User Management" class="menu-logo">User Management</button></li>
+                <li><button class="menu-item" onclick="location.href='login.html'"><img src="logout.png" alt="Log Out" class="menu-logo">Log Out</button></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="main-content">
+        <div class="dashboard-header">
+            <h2>USER MANAGEMENT</h2>
+            <button class="notif-button" onclick="location.href='notif.html'">
+                <img src="notif.png" alt="Notifications Logo" class="notif-logo">
+            </button>
+        </div>
+
+        <!-- SEARCH BAR -->
+        <div class="search-container">
+            <input type="text" id="searchUser" placeholder="Search here">
+            <img src="search.png" alt="Search Icon" class="search-icon">
+        </div>
+
+        <!-- POPUP MODAL -->
+        <div id="no-user-popup" class="popup">
+            <div class="popup-content">
+                <p>No registered users yet.</p>
+                <button onclick="closePopup()">OK</button>
+            </div>
+        </div>
+
+        <!-- USER TABLE -->
+        <table id="user-table">
+            <thead>
+                <tr>
+                    
+                    <th>Full Name</th>
+                    <th>Email Address</th>
+                    <th>Address</th>
+                    <th>Contact Number</th>
+                    <th>Date Joined</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Users will be dynamically added here -->
+            </tbody>
+        </table>
+
+        <!-- Pagination Controls -->
+        <div class="pagination"></div>
+    </div>
+</div>
+
+<script src="user.js"></script>
+
+<!-- SEARCH FUNCTIONALITY -->
+<script>
+document.getElementById('searchUser').addEventListener('keyup', function () {
+    let filter = this.value.toLowerCase();
+    let rows = document.querySelectorAll("#user-table tbody tr");
+
+    rows.forEach(row => {
+        let name = row.cells[0]?.textContent.toLowerCase() || "";
+        let email = row.cells[1]?.textContent.toLowerCase() || "";
+        let address = row.cells[2]?.textContent.toLowerCase() || "";
+        let contact = row.cells[3]?.textContent.toLowerCase() || "";
+
+        if (name.includes(filter) || email.includes(filter) || address.includes(filter) || contact.includes(filter)) {
+            row.style.display = "";
+        } else {
+            row.style.display = "none";
+        }
+
+        
+    
+    });
+});
+
+</script>
+
+</body>
+</html>

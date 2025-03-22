@@ -1,0 +1,97 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-image: url('bg.png');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: left;
+}
+
+.box {
+    background: white;
+    height: 300px;
+    padding: 90px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 470px;
+    margin: 10px auto;
+}
+
+h2 {
+    font-size: 20px;
+    font-weight: 800;
+    color: #333;
+    transform: translateY(-50px);
+}
+
+input {
+    width: 125%;
+    padding: 10px;
+    margin: 35px auto;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-size: 14px;
+    transform: translateX(-9%);
+}
+
+.password-container {
+    position: relative;
+    width: 100%;
+    margin-top: -50px;
+}
+
+.password-container input {
+    width: 120%;
+    padding-right: 30px; 
+}
+
+.password-container .toggle-password {
+    position: absolute;
+    top: 50%;
+    right: -10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 18px;
+    color: #888;
+    font-size: 17px;
+}
+
+#message {
+    display: none;
+    color: red;
+    font-size: 14px;
+    margin-top: 60px;
+    text-align: center;
+}
+
+button {
+    width: 80%;
+    background: #010066;
+    color: white;
+    border: none;
+    margin-top: -10px;
+    padding: 10px;
+    font-size: 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: Poppins;
+}
+
+button:hover {
+    background: darkblue;
+}

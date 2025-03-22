@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REQUESTS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@100;300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="requests.css">
+</head>
+<body>
+
+  <div class="container">
+    <div class="sidebar">
+        <div class="logo">
+            <img src="logo2.png" alt="Logo" class="logo">
+        </div>
+      <nav>
+        <ul>
+            <li>
+                <button class="menu-item" onclick="location.href='dashboard.html'">
+                    <img src="qr.png" alt="Download Logo" class="menu-logo">
+                    Dashboard
+                </button>
+            </li>
+            <li>
+                <button class="menu-item active" onclick="location.href='requests.html'">
+                    <img src="docu.png" alt="Requests Logo" class="menu-logo">
+                    Requests
+                </button>
+            </li>
+            <li>
+                <button class="menu-item" onclick="location.href='status.html'">
+                    <img src="status.png" alt="Requests Logo" class="menu-logo">
+                    Status
+                </button>
+            </li>
+            <li>
+                <button class="menu-item" onclick="location.href='user.html'">
+                    <img src="people.png" alt="User Management Logo" class="menu-logo">
+                    User Management
+                </button>
+            </li>
+            <li>
+                <button class="menu-item" onclick="location.href='login.html'">
+                    <img src="logout.png" alt="Log Out Logo" class="menu-logo">
+                    Log Out
+                </button>
+            </li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="main-content">
+        <div class="dashboard-header">
+            <h2>REQUESTS</h2>
+            <button class="notif-button" onclick="location.href='notif.html'">
+                <img src="notif.png" alt="Notifications Logo" class="notif-logo">
+            </button>
+        </div>
+
+        <!-- Search Input -->
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search here">
+            <img src="search.png" alt="Search Icon" class="search-icon">
+        </div>
+
+        <div class="requests-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Request</th>
+                        <th>Date Requested</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Requests will be dynamically added here -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Pagination Controls -->
+        <div class="pagination"></div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            console.log("Loading requests...");
+            loadRequests();
+            
+            // Attach event listener for search
+            document.getElementById("searchInput").addEventListener("keyup", searchRequests);
+        });
+
+        function loadRequests() {
+            fetch("http://localhost/brgysysreq/req.php")
+                .then(response => response.json())
+                .then(data => {
+                    console.log("API Data:", data);
+                    let tableBody = document.querySelector("tbody");
+                    tableBody.innerHTML = "";
+
+                    if (data.length === 0) {
+                        tableBody.innerHTML = "<tr><td colspan='4'>No pending requests.</td></tr>";
+                        return;
+                    }
+
+                    data.forEach(request => {
+                        let row = document.createElement("tr");
+                        row.setAttribute("data-id", request.id);
+
+                        let actionButtons = request.status === "Pending" ? `
+                            <button class="approve-btn" onclick="updateRequest(${request.id}, 'Approved', this)">Approve</button>
+                            <button class="reject-btn" onclick="updateRequest(${request.id}, 'Rejected', this)">Reject</button>
+                        ` : `<span class="done">Done</span>`;
+
+                        row.innerHTML = `
+                            <td>${request.name}</td>
+                            <td>${request.request}</td>
+                            <td>${request.date_requested}</td>
+                            <td>${actionButtons}</td>
+                        `;
+                        tableBody.appendChild(row);
+                    });
+                })
+                .catch(error => {
+                    console.error("Error fetching requests:", error);
+                    document.querySelector("tbody").innerHTML = "<tr><td colspan='4'>Failed to load data.</td></tr>";
+                });
+        }
+
+        function updateRequest(id, status, button) {
+            fetch("http://localhost/brgysysreq/update_request.php", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ id: id, status: status })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                if (data.success) {
+                    alert(`Request has been ${status}`);
+
+                    // Change button text to "Done"
+                    let row = button.closest("tr");
+                    if (row) {
+                        row.innerHTML = `
+                            <td>${row.children[0].textContent}</td>
+                            <td>${row.children[1].textContent}</td>
+                            <td>${row.children[2].textContent}</td>
+                            <td><span class="done">Done</span></td>
+                        `;
+                    }
+                } else {
+                    alert("Error updating request");
+                }
+            })
+            .catch(error => console.error("Error:", error));
+        }
+
+        function searchRequests() {
+            const searchText = document.getElementById("searchInput").value.toLowerCase();
+            const tableRows = document.querySelectorAll("tbody tr");
+
+            tableRows.forEach(row => {
+                const name = row.children[0].textContent.toLowerCase();
+                const request = row.children[1].textContent.toLowerCase();
+
+                if (name.includes(searchText) || request.includes(searchText)) {
+                    row.style.display = "";
+                } else {
+                    row.style.display = "none";
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>

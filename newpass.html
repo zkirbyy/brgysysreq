@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEW PASSWORD</title>
+    <link rel="stylesheet" href="newpass.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="box">
+            <h2>New Password?</h2>
+            <form id="newpass-form" action="login.html" method="POST" onsubmit="return validatePasswords()">
+                <div class="password-container">
+                    <input type="password" id="password" placeholder="New Password" required>
+                    <i class="fas fa-eye toggle-password" id="togglePassword"></i>
+                </div>
+                <div class="password-container">
+                    <input type="password" id="confirm-password" placeholder="Confirm Password" required>
+                    <i class="fas fa-eye toggle-password" id="toggleConfirmPassword"></i>
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+            <p id="message"></p>
+        </div>
+    </div>
+    <script src="newpass.js"></script>
+</body>
+</html>

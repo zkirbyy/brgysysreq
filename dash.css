@@ -1,0 +1,16 @@
+#myPieChartContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 30px;
+}
+
+#myPieChart {
+    max-width: 250px;
+    max-height: 250px;
+}
+
+.chart-legend {
+    text-align: center;
+    margin-top: 10px;
+}

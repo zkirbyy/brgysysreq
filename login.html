@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOG IN</title>
+    <link rel="stylesheet" href="login.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <div class="logo"></div>                                                                                        
+            <h2>ADMIN LOGIN</h2>
+            <p>Welcome to our site!</p>
+            <form id="login-form" action="#A" method="POST">
+                <input type="email" id="username" placeholder="Username" required>
+                <div class="password-container">
+                    <input type="password" id="password" placeholder="Password" required>
+                    <i class="fas fa-eye toggle-password" id="togglePassword"></i>
+                </div>
+                <button type="submit">Log In</button>
+                <a href="fpass.html" class="forgot-password">Forgot Password?</a>
+            </form>
+        </div>
+    </div>
+    <script src="login.js"></script>
+</body>
+</html>

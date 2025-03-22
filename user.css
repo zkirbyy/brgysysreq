@@ -1,0 +1,340 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f7f7;
+    display: flex; 
+    min-height: 100vh;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+}
+
+.sidebar {
+    background-color: #010066;
+    color: white;
+    width: 300px;
+    padding: 20px;
+    height: 740px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    margin-bottom: 30px;
+}
+
+.logo img {
+    width: 160px; 
+    height: auto; 
+    margin-top: 30px;
+}
+
+nav ul {
+    list-style-type: none;
+}
+nav ul li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+    width: 100%; 
+}
+
+nav ul li img.menu-logo {
+    margin-right: 30px;
+    margin-left: 0px; 
+}
+
+nav ul li button {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    font-family: Barlow, sans-serif;
+    font-weight: 700;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    height: 40px;
+    padding: 10px;
+    width: 100%; 
+    transition: background 0.3s, color 0.3s, border-radius 0.3s;
+    border-radius: 10px;
+}
+
+nav ul li button:hover {
+    background: #A4A4A4; 
+    color: #fff;
+    border-radius: 10px; 
+}
+
+nav ul li button.active, nav ul li button:hover {
+    background: #0C0B48; 
+    color: #fff;
+    border-radius: 10px; 
+}
+
+nav ul li.active button {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+}
+
+.main-content {
+    flex: 1;
+    background-color: #f7f7f7;
+    padding: 30px;
+}
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    margin-top: 20px;
+    padding-left: 25px;
+}
+
+.dashboard-header h2 {
+    font-size: 1.7rem;
+    color: #333;
+    margin-bottom: 10px;
+    color: #010066;
+    font-family: Barlow, sans-serif;
+    font-weight: 800;
+}
+
+.notif-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-right: 150px;
+}
+
+.notif-logo {
+    width: 30px;   
+    height: 30px;
+}
+
+.search-container {
+    position: relative;
+    width: 100%;
+    max-width: 1000px;
+    margin-bottom: 30px;
+    margin-left: 20px; 
+    margin-top: 10px;
+}
+
+.search-container input {
+    width: 100%;
+    padding: 10px 40px 10px 12px; 
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: Barlow, sans-serif;
+    font-size: 15px;
+}
+
+.search-container .search-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+}
+/* DASHBOARD STATS */
+.dashboard-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.dashboard-stats .first-row,
+.dashboard-stats .second-row,
+.dashboard-stats .third-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap; /* Ensures responsiveness */
+}
+
+.stat {
+    background-color: white;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    min-height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    max-width: 300px; /* Prevents excessive stretching */
+}
+
+/* POPUP STYLING */
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 25px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    border-radius: 8px;
+    z-index: 1000;
+    width: 300px;
+}
+
+.popup-content p {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+/* TABLE STYLING */
+table {
+    width: 95%;
+    margin: 40px auto;
+    margin-left: 20px auto;
+    font-size: 16px;
+    border-collapse: collapse;
+    background-color: #ffffff; 
+    font-family: 'Barlow', sans-serif;
+}
+
+table th, table td {
+    padding: 15px;
+    width: auto;
+    height: 50px;
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    white-space: nowrap; 
+    text-align: left;
+    border-bottom: 2px solid #f1f0f0;
+}
+
+table th {
+    background-color: #ffffff; 
+    color: #010066;
+    border-bottom: 2px solid #ddd;
+    height: 50px;
+}
+
+#table td { 
+    color: #838384;
+    font-weight: 400;
+}
+
+/* TABLE ACTION MENU */
+.action-menu {
+    position: relative;
+}
+
+.menu-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.dropdown {
+    display: none;
+    position: absolute;
+    right: 0;
+    background: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    overflow: hidden;
+    z-index: 10;
+    min-width: 120px;
+}
+
+.dropdown button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.dropdown button:hover {
+    background-color: #f5f5f5;
+}
+
+.edit-btn {
+    background-color: #007bff;
+    color: white;
+}
+
+.edit-btn:hover {
+    background-color: #0056b3;
+}
+
+.delete-btn {
+    background-color: #dc3545;
+    color: white;
+}
+
+.delete-btn:hover {
+    background-color: #a71d2a;
+}
+
+/* Show dropdown when active */
+.action-menu.active .dropdown {
+    display: block;
+}
+
+/* PAGINATION */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.page-button {
+    padding: 10px 15px;
+    border: 1px solid #f4f1f1;
+    border-radius: 4px;
+    background-color: #f4f1f1;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 0 5px;
+    font-family: 'Barlow', sans-serif;
+    transition: background 0.3s ease;
+}
+
+.page-button:hover {
+    background-color: #e1e1e1;
+}
+
+.page-button:disabled {
+    cursor: not-allowed;
+    background-color: #ddd;
+}
+
+.page-button.active {
+    background-color: #010066;
+    color: white;
+    font-weight: bold;
+}
+
+/* BUTTON SECTION */
+.button-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+}
