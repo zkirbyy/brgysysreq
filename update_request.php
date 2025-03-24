@@ -7,7 +7,7 @@ header("Access-Control-Allow-Methods: POST");
 $host = "localhost";
 $user = "root"; // Default XAMPP user
 $pass = ""; // Default XAMPP password is empty
-$dbname = "barangay_db";
+$dbname = "admin";
 
 $conn = new mysqli($host, $user, $pass, $dbname);
 

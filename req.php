@@ -7,7 +7,7 @@ header("Access-Control-Allow-Methods: GET");
 $host = "localhost";
 $user = "root"; // Default XAMPP user
 $pass = ""; // Default XAMPP password is empty
-$dbname = "barangay_db"; // Update this with your actual database name
+$dbname = "admin"; // Update this with your actual database name
 
 $conn = new mysqli($host, $user, $pass, $dbname);
 

@@ -14,8 +14,11 @@ function fetchUsers() {
             if (users.length === 0) {
                 document.getElementById("no-user-popup").style.display = "block";
             } else {
+                document.getElementById("no-user-popup").style.display = "none"; // Hide no-user popup
+
                 users.forEach(user => {
                     let row = document.createElement("tr");
+                    row.setAttribute("data-id", user.id); // Store user ID for easy removal
                     row.innerHTML = `
                         <td>${user.fullname}</td>
                         <td>${user.email}</td>
@@ -31,7 +34,8 @@ function fetchUsers() {
                 document.querySelectorAll(".delete-btn").forEach(button => {
                     button.addEventListener("click", function () {
                         let userId = this.getAttribute("data-id");
-                        deleteUser(userId);
+                        let row = this.closest("tr"); // Capture the row before sending request
+                        deleteUser(userId, row);
                     });
                 });
             }
@@ -39,19 +43,29 @@ function fetchUsers() {
         .catch(error => console.error("Error fetching users:", error));
 }
 
-function deleteUser(userId) {
+function deleteUser(userId, row) {
     if (confirm("Are you sure you want to delete this user?")) {
         fetch("http://localhost/brgysysreq/delete_user.php", {
             method: "POST",
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded"
             },
-            body: new URLSearchParams({ user_id: userId }) // Replace 1 with the actual user ID
+            body: new URLSearchParams({ user_id: userId })
         })
         .then(response => response.json())
-        .then(data => console.log(data))
+        .then(data => {
+            if (data.success) {
+                // ✅ Remove the deleted row immediately
+                row.remove();
+
+                // ✅ Check if the table is empty after deletion
+                if (document.querySelector("#user-table tbody").children.length === 0) {
+                    document.getElementById("no-user-popup").style.display = "block";
+                }
+            } else {
+                alert("Failed to delete user.");
+            }
+        })
         .catch(error => console.error("Error:", error));
-        
     }
 }
-

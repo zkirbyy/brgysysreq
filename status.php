@@ -6,7 +6,7 @@ header("Content-Type: application/json");
 $host = "localhost";
 $user = "root"; // Default XAMPP user
 $pass = ""; // Default XAMPP password is empty
-$dbname = "barangay_db"; // Change this to your database name
+$dbname = "admin"; // Change this to your database name
 
 $conn = new mysqli($host, $user, $pass, $dbname);
 
